@@ -2,6 +2,7 @@
 
 import random
 import sys
+import time
 # make a module to put here, will be used for user input verification
 
 
@@ -37,6 +38,7 @@ def sing(bottles, beverage):
 def main():
     """Main will loop through the sing function 98 times and sing bottles of
     beer on the wall"""
+    startTime = time.time()
     beverage = "beer"
     if len(sys.argv) == 1:      # Arguments are checked for validity
         try:
@@ -62,6 +64,9 @@ def main():
     while wall >= 1:     # Loop to decrement number passed to the song
         sing(wall, beverage)
         wall -= 1
+    endTime = time.time()
+    runTime = endTime - startTime
+    print("It took {} seconds to sing Bottles to you. ".format(runTime))
 
 
 if __name__ == "__main__":

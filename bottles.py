@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import random
+import sys
 # make a module to put here, will be used for user input verification
 
 
@@ -34,18 +35,22 @@ def sing(bottles):
 def main():
     """Main will loop through the sing function 98 times and sing bottles of
     beer on the wall"""
-    try:
-        choice = input("Enter y to start with a random number(ENTER for 99): ")
-    except (KeyboardInterrupt, EOFError):
-        print()
-        return 2
-    if choice.lower() == "y":
-        wall = random.randint(1, 99)
-    elif (choice == "") or (choice.lower() == "n"):
-        wall = 99
-    else:
-        print("INVALID CHOICE")
-        return 1
+    if sys.argv[1] == "":
+        try:
+            choice = input("Enter y to start with a random "
+                           "number(ENTER for 99): ")
+        except (KeyboardInterrupt, EOFError):
+            print()
+            return 2
+        if choice.lower() == "y":
+            wall = random.randint(1, 99)
+        elif (choice == "") or (choice.lower() == "n"):
+            wall = 99
+        else:
+            print("INVALID CHOICE")
+            return 1
+    elif int(sys.argv[1]) >= 1:
+        wall = int(sys.argv[1])
     while wall >= 1:     # Loop to decrement number passed to the song
         sing(wall)
         wall -= 1

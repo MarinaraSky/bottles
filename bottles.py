@@ -34,7 +34,11 @@ def sing(bottles):
 def main():
     """Main will loop through the sing function 98 times and sing bottles of
     beer on the wall"""
-    choice = input("Enter y to start with a random number(ENTER for 99): ")
+    try:
+        choice = input("Enter y to start with a random number(ENTER for 99): ")
+    except (KeyboardInterrupt, EOFError):
+        print()
+        return 2
     if choice.lower() == "y":
         wall = random.randint(1, 99)
     elif (choice == "") or (choice.lower() == "n"):

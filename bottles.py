@@ -5,28 +5,30 @@ import sys
 # make a module to put here, will be used for user input verification
 
 
-def sing(bottles):
+def sing(bottles, beverage):
     """This function will take an integer and sing however many bottles of
     of beverage needed until there are no more bottles on the wall"""
 
     # The lyrics to the songs with format string syntax
-    firstLine = "{} bottles of beer on the wall!"
-    secondLine = "{} bottles of beer!"
+    firstLine = "{} bottles of {} on the wall!"
+    secondLine = "{} bottles of {}!"
     passIt = "Take one down \nAnd Pass it around"
+    formatTup = (bottles, beverage)
     if bottles == 1:    # Checking to see if last bottle on wall
-        print(firstLine.format(bottles).replace("bottles", "bottle"))
-        print(secondLine.format(bottles).replace("bottles", "bottle"))
+        print(firstLine.format(*formatTup).replace("bottles", "bottle"))
+        print(secondLine.format(*formatTup).replace("bottles", "bottle"))
         print(passIt)
-        print("No more bottles of beer on the wall!")
+        print("No more bottles of {} on the wall!".format(beverage))
     elif bottles > 1:
-        print(firstLine.format(bottles))
-        print(secondLine.format(bottles))
+        print(firstLine.format(*formatTup))
+        print(secondLine.format(*formatTup))
         print(passIt)
         bottles -= 1        # This is to print 1 less bottle for the last line
+        formatTup = (bottles, beverage)
         if bottles == 1:
-            print(firstLine.format(bottles).replace("bottles", "bottle"))
+            print(firstLine.format(*formatTup).replace("bottles", "bottle"))
         else:
-            print(firstLine.format(bottles))
+            print(firstLine.format(*formatTup))
     else:
         pass
     print()
@@ -35,7 +37,8 @@ def sing(bottles):
 def main():
     """Main will loop through the sing function 98 times and sing bottles of
     beer on the wall"""
-    if len(sys.argv) == 1:
+    beverage = "beer"
+    if len(sys.argv) == 1:      # Arguments are checked for validity
         try:
             choice = input("Enter y to start with a random "
                            "number(ENTER for 99): ")
@@ -49,10 +52,17 @@ def main():
         else:
             print("INVALID CHOICE")
             return 1
+    elif len(sys.argv) > 3:
+        print("TOO MANY ARGUMENTS")
+        return 3
+    elif len(sys.argv) == 2:
+        print("NOT ENOUGH ARGUMENTS")
+        return 4
     elif int(sys.argv[1]) >= 1:
         wall = int(sys.argv[1])
+        beverage = sys.argv[2]
     while wall >= 1:     # Loop to decrement number passed to the song
-        sing(wall)
+        sing(wall, beverage)
         wall -= 1
 
 

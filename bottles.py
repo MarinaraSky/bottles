@@ -43,21 +43,19 @@ def main():
             choice = input("Enter y to start with a random "
                            "number(ENTER for 99): ")
         except (KeyboardInterrupt, EOFError):
-            print()
-            return 2
+            return print()
         if choice.lower() == "y":
             wall = random.randint(1, 99)
         elif (choice == "") or (choice.lower() == "n"):
             wall = 99
         else:
-            print("INVALID CHOICE")
-            return 1
+            return print("INVALID CHOICE")
     elif len(sys.argv) > 3:
-        print("TOO MANY ARGUMENTS")
-        return 3
+        return print("TOO MANY ARGUMENTS")
     elif len(sys.argv) == 2:
-        print("NOT ENOUGH ARGUMENTS")
-        return 4
+        return print("NOT ENOUGH ARGUMENTS")
+    elif sys.argv[1].isnumeric() is False or int(sys.argv[1]) > 99:
+        return print("INVALID NUMBER")
     elif int(sys.argv[1]) >= 1:
         wall = int(sys.argv[1])
         beverage = sys.argv[2]

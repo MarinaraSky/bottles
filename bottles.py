@@ -13,13 +13,13 @@ def sing(bottles, beverage):
              "13": "Thirteen", "12": "Twelve", "11": "Eleven"}
     tensPlace = {"9": "Ninety", "8": "Eighty", "7": "Seventy", "6": "Sixty",
                  "5": "Fifty", "4": "Forty", "3": "Thirty", "2": "Twenty",
-                 "1": "Ten", "0": ""}
-    onePlace = {"1": "One", "2": "Two", "3": "Three", "4": "Four", "5": "Five",
-                "6": "Six", "7": "Seven", "8": "Eight", "9": "Nine", "0": ""}
+                 "1": "Ten"}
+    onePlace = {"9": "Nine", "8": "Eight", "7": "Seven", "6": "Six", "5": "Five",
+                "4": "Four", "3": "Three", "2": "Two", "1": "One", "0": ""}
     # The lyrics to the songs with format string syntax
     firstLine = "{} bottles of {} on the wall!"
     secondLine = "{} bottles of {}!"
-    passIt = "Take one down \nAnd Pass it around"
+    passIt = "Take one down\nAnd pass it around"
     bottlesStr = str(bottles)
     if len(bottlesStr) == 2:
         if bottles < 20 and bottles > 10:

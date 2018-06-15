@@ -35,7 +35,7 @@ def sing(bottles):
 def main():
     """Main will loop through the sing function 98 times and sing bottles of
     beer on the wall"""
-    if sys.argv[1] == "":
+    if len(sys.argv) == 1:
         try:
             choice = input("Enter y to start with a random "
                            "number(ENTER for 99): ")

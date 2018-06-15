@@ -5,17 +5,21 @@ import sys
 import time
 
 
+TEENS = {"19": "Nineteen", "18": "Eighteen", "17": "Seventeen",
+         "16": "Sixteen", "15": "Fifteen", "14": "Fourteen",
+         "13": "Thirteen", "12": "Twelve", "11": "Eleven"}
+
+TENSPLACE = {"9": "Ninety", "8": "Eighty", "7": "Seventy", "6": "Sixty",
+             "5": "Fifty", "4": "Forty", "3": "Thirty", "2": "Twenty",
+             "1": "Ten"}
+
+ONEPLACE = {"9": "Nine", "8": "Eight", "7": "Seven", "6": "Six", "5": "Five",
+            "4": "Four", "3": "Three", "2": "Two", "1": "One", "0": ""}
+
+
 def sing(bottles, beverage):
     """This function will take an integer and sing however many bottles of
     of beverage needed until there are no more bottles on the wall"""
-    teens = {"19": "Nineteen", "18": "Eighteen", "17": "Seventeen",
-             "16": "Sixteen", "15": "Fifteen", "14": "Fourteen",
-             "13": "Thirteen", "12": "Twelve", "11": "Eleven"}
-    tensPlace = {"9": "Ninety", "8": "Eighty", "7": "Seventy", "6": "Sixty",
-                 "5": "Fifty", "4": "Forty", "3": "Thirty", "2": "Twenty",
-                 "1": "Ten"}
-    onePlace = {"9": "Nine", "8": "Eight", "7": "Seven", "6": "Six", "5": "Five",
-                "4": "Four", "3": "Three", "2": "Two", "1": "One", "0": ""}
     # The lyrics to the songs with format string syntax
     firstLine = "{} bottles of {} on the wall!"
     secondLine = "{} bottles of {}!"
@@ -23,17 +27,16 @@ def sing(bottles, beverage):
     bottlesStr = str(bottles)
     if len(bottlesStr) == 2:
         if bottles < 20 and bottles > 10:
-            wordNum = teens[bottlesStr]
+            wordNum = TEENS[bottlesStr]
             formatTup = (wordNum, beverage)
         else:
-            wordNum = tensPlace[bottlesStr[0]] + "-" +\
-                      onePlace[bottlesStr[1]].lower()
+            wordNum = TENSPLACE[bottlesStr[0]] + "-" +\
+                      ONEPLACE[bottlesStr[1]].lower()
             if bottles % 10 == 0:
                 wordNum = wordNum.replace("-", "")
-            wordNum = wordNum
             formatTup = (wordNum, beverage)
     else:
-        formatTup = (onePlace[bottlesStr[0]], beverage)
+        formatTup = (ONEPLACE[bottlesStr[0]], beverage)
     if bottles == 1:    # Checking to see if last bottle on wall
         print(firstLine.format(*formatTup).replace("bottles", "bottle"))
         print(secondLine.format(*formatTup).replace("bottles", "bottle"))
@@ -47,17 +50,17 @@ def sing(bottles, beverage):
         bottlesStr = str(bottles)
         if len(bottlesStr) == 2:
             if bottles < 20 and bottles > 10:
-                wordNum = teens[bottlesStr]
+                wordNum = TEENS[bottlesStr]
                 formatTup = (wordNum, beverage)
             else:
-                wordNum = tensPlace[bottlesStr[0]] + "-" +\
-                    onePlace[bottlesStr[1]].lower()
+                wordNum = TENSPLACE[bottlesStr[0]] + "-" +\
+                    ONEPLACE[bottlesStr[1]].lower()
                 if bottles % 10 == 0:
                     wordNum = wordNum.replace("-", "")
                 wordNum = wordNum
                 formatTup = (wordNum, beverage)
         else:
-            formatTup = (onePlace[bottlesStr[0]], beverage)
+            formatTup = (ONEPLACE[bottlesStr[0]], beverage)
         if bottles == 1:
             print(firstLine.format(*formatTup).replace("bottles", "bottle"))
         else:

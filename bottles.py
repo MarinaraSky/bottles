@@ -93,6 +93,8 @@ def main():
         return print("NOT ENOUGH ARGUMENTS")
     elif sys.argv[1].isnumeric() is False or int(sys.argv[1]) > 99:
         return print("INVALID NUMBER")
+    elif int(sys.argv[1]) < 1:
+        return print("INVALID NUMBER")
     elif int(sys.argv[1]) >= 1:
         wall = int(sys.argv[1])
         beverage = sys.argv[2]

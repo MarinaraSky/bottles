@@ -57,7 +57,6 @@ def sing(bottles, beverage):
                     ONEPLACE[bottlesStr[1]].lower()
                 if bottles % 10 == 0:
                     wordNum = wordNum.replace("-", "")
-                wordNum = wordNum
                 formatTup = (wordNum, beverage)
         else:
             formatTup = (ONEPLACE[bottlesStr[0]], beverage)

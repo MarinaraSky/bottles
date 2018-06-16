@@ -25,34 +25,34 @@ def sing(bottles, beverage):
     secondLine = "{} bottles of {}!"
     passIt = "Take one down\nAnd pass it around"
     bottlesStr = str(bottles)
-    if len(bottlesStr) == 2:
-        if bottles < 20 and bottles > 10:
+    if len(bottlesStr) == 2:    # Checking if double digits
+        if bottles < 20 and bottles > 10:   # Checking if number is in teens
             wordNum = TEENS[bottlesStr]
             formatTup = (wordNum, beverage)
         else:
             wordNum = TENSPLACE[bottlesStr[0]] + "-" +\
                       ONEPLACE[bottlesStr[1]].lower()
-            if bottles % 10 == 0:
+            if bottles % 10 == 0:   # Checking if its a mutliple of 10
                 wordNum = wordNum.replace("-", "")
             formatTup = (wordNum, beverage)
-    else:
+    else:   # If bottles is single digit
         formatTup = (ONEPLACE[bottlesStr[0]], beverage)
     if bottles == 1:    # Checking to see if last bottle on wall
         print(firstLine.format(*formatTup).replace("bottles", "bottle"))
         print(secondLine.format(*formatTup).replace("bottles", "bottle"))
         print(passIt)
         print("No more bottles of {} on the wall!".format(beverage))
-    elif bottles > 1:
+    elif bottles > 1:   # When not last bottle on wall
         print(firstLine.format(*formatTup))
         print(secondLine.format(*formatTup))
         print(passIt)
         bottles -= 1        # This is to print 1 less bottle for the last line
         bottlesStr = str(bottles)
-        if len(bottlesStr) == 2:
+        if len(bottlesStr) == 2:    # checking next bottle for double digit
             if bottles < 20 and bottles > 10:
                 wordNum = TEENS[bottlesStr]
                 formatTup = (wordNum, beverage)
-            else:
+            else:   # Catch if bottles is not in teens
                 wordNum = TENSPLACE[bottlesStr[0]] + "-" +\
                     ONEPLACE[bottlesStr[1]].lower()
                 if bottles % 10 == 0:
